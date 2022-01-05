@@ -1,0 +1,48 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+  <input type="hidden" name="oId" [value]="orderService.formData.oId" />
+  <h5 class="text-left"><u>Create Order Form</u></h5>
+  <br>
+  <div class="form-row">
+    <div class="form-group  col-md-6">
+      <label>Customer Name</label>
+      <input class="form-control form-control-lg" placeholder="Customer Name" name="customerName" #customerName="ngModel"
+        [(ngModel)]="orderService.formData.customerName" required [class.invalid]="customerName.invalid && customerName.touched">
+    </div>
+  </div>
+
+
+
+
+
+    <div class="form-group col-md-6">
+      <label>Qty</label>
+      <input class="form-control form-control-lg" type="number" name="orderQty" #orderQty="ngModel"
+        [(ngModel)]="orderService.formData.orderQty" required
+        [class.invalid]="orderQty.invalid && orderQty.touched">
+    </div>
+
+
+
+
+
+
+
+  <div class="form-group col-md-6">
+    <label>Products</label>
+    <select  class="form-control" name="p"  [(ngModel)]="productService.formData.productName">
+      <option selected>-- Select Product --</option>
+      <option *ngFor="let p of productService.productList" >{{p.productName}}</option>
+  </select>
+  <br>
+  <div class="form-group col-md-6">
+    <label>Price</label>
+    <input class="form-control form-control-lg" type="number" name="unitPrice" #unitPrice="ngModel"
+      [(ngModel)]="orderService.formData.unitPrice" required [class.invalid]="unitPrice.invalid && unitPrice.touched">
+  </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Create Order</button>
+    &nbsp;
+    <button class="btn btn-secondary btn-lg btn-block" type="submit" (click)="clear()">CLEAR</button>
+  </div>
+</form>

@@ -1,0 +1,50 @@
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">MC Solution</h1>
+  <br>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <app-create-order></app-create-order>
+  </div>
+  <div class="col-md-8" style="overflow-y:scroll">
+    <h5 class="text-left"><u>All Orders</u></h5>
+    <br>
+    <div class="row">
+      <div class="col-md-10">
+        <input type="text"  id="searchTxt" class="form-control form-control-sm" placeholder="Search by name">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-warning btn-sm btn-block" type="submit" (click)="search()">Search</button>
+      </div>
+
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Order #</th>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total Amt.</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ord of orderService.orderList">
+          <td>{{ord.orderNumber}}</td>
+          <td>{{ord.customerName}}</td>
+          <td>{{ord.productName}}</td>
+          <td>{{ord.unitPrice}}</td>
+          <td>{{ord.orderQty}}</td>
+          <td>{{ord.totalAmt}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ord.oId)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
